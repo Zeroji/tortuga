@@ -1,0 +1,60 @@
+div#game {
+    display: flex;
+    flex-direction: row;
+}
+
+div#players {
+    background-color: brown;
+    min-width: 10px;
+}
+
+div#decks {
+    background-color: red;
+    min-width: 10px;
+}
+
+div#player {
+    background-color: lightskyblue;
+    min-width: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#board {
+    background-color: blue;
+    position: relative;
+}
+
+#board img {
+    display: block;
+    /* background-image: url("../images/board.png"); ratio 814x510 = 407x255 = 1.596:1 */
+    /* 814px = 158px * 5 + 4px * 6 */
+    width: 814px;
+}
+
+#p1 {
+    position: absolute;
+    left: 24.2%;
+    top: 32.6%;
+    background-color: lime;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+}
+
+div#events {
+    background-color: palevioletred;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+}
+
+div.eventspace {
+    flex: auto;
+    margin: 2px;
+    background-color: rebeccapurple;
+    min-height: 20px;
+}
+
+div.eventspace img { display: block; }
