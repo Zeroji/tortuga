@@ -15,7 +15,15 @@
 @wgame: @wplayers + @wdecks + @wboard + @wplayer;
 @hgame: @hboard + @hevent;
 
-div#game {
+
+.bg-fade(@col) { background-color: fade(@col, 25%); }
+
+html {
+    background: url('../images/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+#game {
     // fixed aspect ratio filling viewport
     width: 100vw;
     height: (@hgame / @wgame) * 100vw;
@@ -35,18 +43,32 @@ img {
     width: 100%;
 }
 
-div#players {
-    background-color: brown;
+#players {
+    .bg-fade(brown);
     width: percentage(@wplayers / @wgame);
 }
 
-div#decks {
-    background-color: red;
+#decks {
+    // background-color: fade(red, 40%);
     width: percentage(@wdecks / @wgame);
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    .deck {
+        .bg-fade(lightsalmon);
+        width: percentage(@wcard / @wdecks);
+        height: percentage(@hcard / @hgame);
+
+        margin-left: percentage(@margin / @wdecks);
+        margin-top: percentage(@margin / @hgame);
+        &:last-child { margin-bottom: margin-top;}
+    }
 }
 
-div#player {
-    background-color: lightskyblue;
+#player {
+    .bg-fade(lightskyblue);
     width: percentage(@wplayer / @wgame);
     display: flex;
     flex-direction: column;
@@ -57,11 +79,10 @@ div#player {
 }
 
 #board {
-    background-color: blue;
     position: relative;
 }
 
-#p1 {
+#p1 {  // test pawn
     position: absolute;
     left: 24.2%;
     top: 32.6%;
@@ -72,21 +93,19 @@ div#player {
     transform: translate(-50%, -50%);
 }
 
-div#events {
-    background-color: palevioletred;
+#events {
     box-sizing: border-box;
     height: percentage(@hevent/@hgame);
     padding: percentage(@margin/@hgame) 0;
     display: flex;
     flex-direction: row;
-}
 
-div.eventspace {
-    flex: auto;
-    height: 100%;
-    margin-left: percentage(@margin/@wboard);
-    &:last-child { margin-right: percentage(@margin/@wboard); }
-    width: percentage(@wcard/@wboard);
-    background-color: rebeccapurple;
-    min-height: 20px;
+    .eventspace {
+        flex: auto;
+        height: 100%;
+        margin-left: percentage(@margin/@wboard);
+        &:last-child { margin-right: percentage(@margin/@wboard); }
+        width: percentage(@wcard/@wboard);
+        min-height: 20px;
+    }
 }
