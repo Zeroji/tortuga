@@ -1,23 +1,59 @@
+// define general sizes
+@wboard: 814px;
+@hboard: 510px;
+@wcard: 158px;
+@hcard: 251px;
+@margin: 4px;
+
+// define various div's sizes
+@wplayers: 60px;
+@wdecks: @margin + @wcard;
+@wplayer: @hcard;
+@hevent: @margin * 2 + @hcard;
+
+// calculate main div size
+@wgame: @wplayers + @wdecks + @wboard + @wplayer;
+@hgame: @hboard + @hevent;
+
 div#game {
+    // fixed aspect ratio filling viewport
+    width: 100vw;
+    height: (@hgame / @wgame) * 100vw;
+    max-width: (@wgame / @hgame) * 100vh;
+    max-height: 100vh;
+    // centered positioning
+    margin: auto;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    // content
     display: flex;
     flex-direction: row;
 }
 
+img {
+    display: block;
+    width: 100%;
+}
+
 div#players {
     background-color: brown;
-    min-width: 10px;
+    width: percentage(@wplayers / @wgame);
 }
 
 div#decks {
     background-color: red;
-    min-width: 10px;
+    width: percentage(@wdecks / @wgame);
 }
 
 div#player {
     background-color: lightskyblue;
-    min-width: 10px;
+    width: percentage(@wplayer / @wgame);
     display: flex;
     flex-direction: column;
+}
+
+#center {
+    width: percentage(@wboard / @wgame);
 }
 
 #board {
@@ -25,36 +61,32 @@ div#player {
     position: relative;
 }
 
-#board img {
-    display: block;
-    /* background-image: url("../images/board.png"); ratio 814x510 = 407x255 = 1.596:1 */
-    /* 814px = 158px * 5 + 4px * 6 */
-    width: 814px;
-}
-
 #p1 {
     position: absolute;
     left: 24.2%;
     top: 32.6%;
     background-color: lime;
-    width: 40px;
-    height: 40px;
+    width: percentage(40px/@wboard);
+    height: percentage(40px/@hboard);
     border-radius: 20px;
     transform: translate(-50%, -50%);
 }
 
 div#events {
     background-color: palevioletred;
-    padding: 2px;
+    box-sizing: border-box;
+    height: percentage(@hevent/@hgame);
+    padding: percentage(@margin/@hgame) 0;
     display: flex;
     flex-direction: row;
 }
 
 div.eventspace {
     flex: auto;
-    margin: 2px;
+    height: 100%;
+    margin-left: percentage(@margin/@wboard);
+    &:last-child { margin-right: percentage(@margin/@wboard); }
+    width: percentage(@wcard/@wboard);
     background-color: rebeccapurple;
     min-height: 20px;
 }
-
-div.eventspace img { display: block; }
