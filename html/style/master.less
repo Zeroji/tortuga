@@ -4,16 +4,20 @@
 @wcard: 158px;
 @hcard: 251px;
 @margin: 4px;
+@maxplayers: 9;
+@radius: 10px;
+@pawn: 36px;
 
-// define various div's sizes
-@wplayers: 60px;
+// calculations
+@hgame: @hboard + @hevent;
+@cardratio: @wcard / @hcard;
+@wplayers: @hgame * @cardratio / @maxplayers;
+@wpcard: @wplayers - @margin;
+@hpcard: (@hgame - @margin) / @maxplayers - @margin;
 @wdecks: @margin + @wcard;
 @wplayer: @hcard;
 @hevent: @margin * 2 + @hcard;
-
-// calculate main div size
 @wgame: @wplayers + @wdecks + @wboard + @wplayer;
-@hgame: @hboard + @hevent;
 
 
 .bg-fade(@col) { background-color: fade(@col, 25%); }
@@ -46,10 +50,47 @@ img {
 #players {
     .bg-fade(brown);
     width: percentage(@wplayers / @wgame);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .player {
+        width: percentage(@wpcard / @wplayers);
+        height: percentage(@hpcard / @hgame);
+        border-radius: percentage(@radius / @wpcard) ~'/' percentage(@radius / @hpcard);
+        overflow: hidden;
+        margin-left: percentage(@margin / @wplayers);
+        margin-top: percentage(@margin / @hgame);
+        &:last-child { margin-bottom: percentage(@margin / @hgame); }
+
+        position: relative;
+        .pawn {
+            position: absolute;
+            width: percentage(@pawn / @wpcard);
+            height: percentage(@pawn / @hpcard);
+            top: percentage(@wpcard / @hpcard);
+            left: 50%;
+            box-sizing: border-box;
+            transform: translate(-50%, -50%);
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+            height: percentage((@hpcard - @wpcard) / @hpcard);
+            background-color: whitesmoke;
+            align-items: flex-end;
+
+            span {
+                text-align: center;
+                flex: auto;
+                display: block;
+            }
+        }
+    }
 }
 
 #decks {
-    // background-color: fade(red, 40%);
     width: percentage(@wdecks / @wgame);
     box-sizing: border-box;
 
@@ -86,10 +127,10 @@ img {
     position: absolute;
     left: 24.2%;
     top: 32.6%;
-    background-color: lime;
-    width: percentage(40px/@wboard);
-    height: percentage(40px/@hboard);
-    border-radius: 20px;
+    background: url('../images/seal.png');
+    background-size: contain;
+    width: percentage(@pawn / @wboard);
+    height: percentage(@pawn / @hboard);
     transform: translate(-50%, -50%);
 }
 
