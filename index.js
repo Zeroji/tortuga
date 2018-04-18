@@ -4,15 +4,13 @@ var app = express();
 
 const PORT = 1667;
 
-// Ajout du serveur
-// API REST
-// var api = require("./api/app");
-// app.use("/api", api);
+// Include main game server
+app.use('/', require('./server'))
 
-// HTML à la racine
+// Serve static HTML
 app.use(express.static('html', {extensions: ['html']}));
 
-// Lancement de l'application
+// Start application
 app.listen(PORT, function() {
     console.log('Application started');
 });
