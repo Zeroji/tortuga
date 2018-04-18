@@ -10,7 +10,7 @@ const PORT = 1667;
 // app.use("/api", api);
 
 // HTML à la racine
-app.use(express.static("html"));
+app.use(express.static('html', {extensions: ['html']}));
 
 // Lancement de l'application
 app.listen(PORT, function() {
