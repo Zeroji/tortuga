@@ -8,5 +8,22 @@
     <title>Tortuga 1667</title>
 </head>
 <body>
+    <div id="home">
+        <form action="post" method="/game">
+            <fieldset>
+                <div><span id="player_count">4</span> players</div>
+                <input type="range" min="2" max="9" step="1" value="4" name="" id="">
+                <input type="submit" value="Play">
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" name="event_hints" id="event_hints">
+                <label for="event_hints">Event hints</label>
+                <input type="checkbox" name="event_hints_all" id="event_hints_all">
+                <label for="event_hints_all">All players</label>
+                <input type="checkbox" name="event_hints_full" id="event_hints_full">
+                <label for="event_hints_full">Card reveal</label>
+            </fieldset>
+        </form>
+    </div>
 </body>
 </html>

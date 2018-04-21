@@ -19,12 +19,18 @@
 @hevent: @margin * 2 + @hcard;
 @wgame: @wplayers + @wdecks + @wboard + @wplayer;
 
+@font-face {
+    font-family: 'Booter';
+    src: url("../fonts/booterFF.ttf") format("opentype");
+}
 
 .bg-fade(@col) { background-color: fade(@col, 25%); }
 
 html {
     background: url('../images/bg.jpg') no-repeat center center fixed;
     background-size: cover;
+    font-family: "Booter";
+    font-size: 1.3vw;
 }
 
 #game {
