@@ -40,7 +40,7 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background: url('../images/bgpaper.jpg') repeat-x center center fixed;
+    background: url('../images/bgpaper.jpg') repeat-x center center;
     background-size: cover;
 
     position: absolute;
@@ -54,9 +54,12 @@ form {
     transform: translate(-50%, -50%);
 
     fieldset {
+        border: 0;
+    }
+
+    fieldset > div {
         margin: 0;
         padding: 0;
-        border: 0;
         height: 35%;
 
         display: flex;
@@ -64,7 +67,7 @@ form {
         align-items: center;
     }
 
-    fieldset:first-child {
+    fieldset:first-child > div {
         & > div {
             text-align: center;
             width: 20%;
@@ -85,9 +88,7 @@ form {
         }
     }
 
-    fieldset:last-child {
-        display: flex;
-        flex-direction: row;
+    fieldset:last-child > div {
         justify-content: space-evenly;
 
         // hide real checkboxes

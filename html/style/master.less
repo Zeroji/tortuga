@@ -1,3 +1,5 @@
+@import "reset.css";
+
 // define general sizes
 @wboard: 814px;
 @hboard: 510px;
@@ -53,6 +55,14 @@ img {
     width: 100%;
 }
 
+// Chrome / Safari target hack (to fix percentage margins)
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    body:nth-of-type(1) #players .player {
+        margin-top: percentage(@margin / @hpcard) * 2;
+        &:last-child { margin-bottom: percentage(@margin / @hpcard) * 2 !important; }
+    }
+}
+
 #players {
     .bg-fade(brown);
     width: percentage(@wplayers / @wgame);
@@ -102,15 +112,13 @@ img {
 
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
 
     .deck {
         .bg-fade(lightsalmon);
         width: percentage(@wcard / @wdecks);
         height: percentage(@hcard / @hgame);
-
-        margin-left: percentage(@margin / @wdecks);
-        margin-top: percentage(@margin / @hgame);
-        &:last-child { margin-bottom: margin-top;}
     }
 }
 

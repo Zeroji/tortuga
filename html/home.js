@@ -5,6 +5,6 @@ $('nav#links li').on('click', function (event) {
     target.toggleClass('shown')
 })
 
-$('input#event_hints').on('input', function (event) {
+$('input#event_hints').on('change', function (event) {
     $('input#event_hints_all, input#event_hints_full').attr('disabled', !event.target.checked)
 })
